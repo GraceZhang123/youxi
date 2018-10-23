@@ -86,4 +86,69 @@
         <constructor-arg index="0" ref="youxiSqlSessionFactory"/>
     </bean>
 
+
+    <!-- redis单机版接口实现 -->
+    <bean id="jedisClient" class="com.zq.youxi.utils.JedisClientImpl"></bean>
+    <!-- Redis配置 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
+        <constructor-arg name="host" value="${REDIS_HOST}"></constructor-arg>
+        <constructor-arg name="port" value="${REDIS_PORT}"></constructor-arg>
+    </bean>
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 最大连接数 -->
+        <property name="maxTotal" value="${REDIS_POOL_MAXTOTAL}" />
+        <!-- 最大空闲连接数 -->
+        <property name="maxIdle" value="${REDIS_POOL_MAXIDLE}" />
+        <!-- 每次释放连接的最大数目 -->
+        <property name="numTestsPerEvictionRun" value="${REDIS_POOL_NUMTESTSPEREVICTIONRUN}" />
+        <!-- 释放连接的扫描间隔（毫秒） -->
+        <property name="timeBetweenEvictionRunsMillis" value="${REDIS_POOL_TIMEBETWEENEVICTIONRUNSMILLIS}" />
+        <!-- 连接最小空闲时间 -->
+        <property name="minEvictableIdleTimeMillis" value="${REDIS_POOL_MINEVICTABLEIDLETIMEMILLIS}" />
+        <!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+        <property name="softMinEvictableIdleTimeMillis" value="${REDIS_POOL_SOFTMINEVICTABLEIDLETIMEMILLIS}" />
+        <!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+        <property name="maxWaitMillis" value="${REDIS_POOL_MAXWAITMILLIS}" />
+        <!-- 在获取连接的时候检查有效性, 默认false -->
+        <property name="testOnBorrow" value="${REDIS_POOL_TESTONBORROW}" />
+        <!-- 在空闲时检查有效性, 默认false -->
+        <property name="testWhileIdle" value="${REDIS_POOL_TESTWHILEIDLE}" />
+        <!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
+        <property name="blockWhenExhausted" value="${REDIS_POOL_BLOCKWHENEXHAUSTED}" />
+    </bean>
+
+    <!-- redis集群版配置 -->
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
+        <constructor-arg name="nodes">
+            <set>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17001"></constructor-arg>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17002"></constructor-arg>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17003"></constructor-arg>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17004"></constructor-arg>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17005"></constructor-arg>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg name="host" value="192.168.137.109"></constructor-arg>
+                    <constructor-arg name="port" value="17006"></constructor-arg>
+                </bean>
+            </set>
+        </constructor-arg>
+    </bean>
+
 </beans>
