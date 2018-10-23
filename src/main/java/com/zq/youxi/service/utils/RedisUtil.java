@@ -1,4 +1,4 @@
-package com.zq.youxi.utils;
+package com.zq.youxi.service.utils;
 
 import java.util.Collection;
 import java.util.Date;

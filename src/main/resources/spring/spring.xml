@@ -88,7 +88,7 @@
 
 
     <!-- redis单机版接口实现 -->
-    <bean id="jedisClient" class="com.zq.youxi.utils.JedisClientImpl"></bean>
+    <bean id="jedisClient" class="com.zq.youxi.service.utils.JedisClientImpl"></bean>
     <!-- Redis配置 -->
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
         <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>

@@ -1,5 +1,5 @@
 
-package com.zq.youxi.utils;
+package com.zq.youxi.service.utils;
 
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
