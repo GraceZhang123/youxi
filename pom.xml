@@ -41,9 +41,15 @@
     <mybatis-spring.version>1.3.0</mybatis-spring.version>
     <spring-data-redis.version>2.0.11.RELEASE</spring-data-redis.version>
     <jedis.version>2.9.0</jedis.version>
+    <mongodb.version>3.0.1</mongodb.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>${mongodb.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
